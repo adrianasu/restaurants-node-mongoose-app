@@ -35,6 +35,27 @@ app.get("/restaurants", (req, res) => {
     });
 });
 
+// app.get('/restaurants', (req, res) => {
+//   const filters = {};
+//   const queryableFields = ['cuisine', 'borough'];
+//   queryableFields.forEach(field => {
+//     if (req.query[field]) {
+//       filters[field] = req.query[field];
+//     }
+//   });
+//   Restaurant
+//     .find(filters)
+//     .then(Restaurants => res.json(
+//       Restaurants.map(restaurant => restaurant.serialize())
+//     ))
+//     .catch(err => {
+//       console.error(err);
+//       res.status(500).json({
+//         message: 'Internal server error'
+//       })
+//     });
+// });
+
 // can also request by ID
 app.get("/restaurants/:id", (req, res) => {
   Restaurant
@@ -158,7 +179,8 @@ function closeServer() {
 }
 
 // if server.js is called directly (aka, with `node server.js`), this block
-// runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
+// runs. but we also export the runServer command so other code (for instance, 
+// test code) can start the server as needed.
 if (require.main === module) {
   runServer(DATABASE_URL).catch(err => console.error(err));
 }
